@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La1tou — Жизнь люркера</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -28,10 +29,7 @@
       animation: fadeOut 1s ease 3s forwards;
     }
     @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
+      to { opacity: 0; visibility: hidden; }
     }
     .typewriter::after {
       content: '|';
@@ -135,24 +133,20 @@
     .write-button a:hover {
       box-shadow: 0 0 25px #d89bff;
     }
+    blockquote {
+      font-style: italic;
+      font-size: 1.1em;
+      margin: 20px 30px;
+      border-left: 4px solid #b05eff;
+      padding-left: 15px;
+      color: #ccc;
+    }
     footer {
       margin-top: 50px;
       text-align: center;
       font-size: 0.9em;
       color: #555;
       padding: 20px;
-    }
-
-    /* Анимация появления */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
@@ -164,12 +158,12 @@
   <div class="grid-background"></div>
   <canvas id="particles"></canvas>
 
-  <header>
+  <header data-aos="fade-down">
     <h1>La1tou</h1>
     <p>Люркер Bastau Esports | 5+ лет в Standoff 2</p>
   </header>
 
-  <section class="fade-up">
+  <section data-aos="fade-up">
     <h2>📱 Соцсети</h2>
     <div class="social-links">
       <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram-канал</a>
@@ -178,26 +172,37 @@
     </div>
   </section>
 
-  <section class="fade-up">
+  <section data-aos="fade-up" data-aos-delay="200">
     <h2>🎨 Арты</h2>
     <p>Здесь будут мои арты: сеты, графика и творческие идеи.</p>
   </section>
 
-  <section class="fade-up">
+  <section data-aos="fade-up" data-aos-delay="400">
     <h2>🎮 Жизнь люркера</h2>
     <p>Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
   </section>
 
-  <div class="write-button fade-up">
+  <div class="write-button" data-aos="zoom-in" data-aos-delay="500">
     <a href="https://t.me/H1D33N" target="_blank">✉️ Написать La1tou</a>
   </div>
 
-  <footer>
+  <!-- Новый блок: отзывы -->
+  <section data-aos="fade-up" data-aos-delay="600">
+    <h2>🗣️ Отзывы тиммейтов</h2>
+    <blockquote>
+      “Да он ебанутый... <strong>#La1touНаучиТакПикать</strong>”
+      <br><span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— IcyMu</span>
+    </blockquote>
+  </section>
+
+  <footer data-aos="fade" data-aos-delay="700">
     <p>&copy; 2025 La1tou. Все права защищены.</p>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // Частицы (оставляем как есть)
+    AOS.init();
+
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -240,19 +245,6 @@
     }
 
     drawParticles();
-
-    // Анимация появления блоков
-    const fadeElements = document.querySelectorAll('.fade-up');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

@@ -6,6 +6,14 @@
   <title>La1tou — Жизнь люркера</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #b05eff;
+      background: #000;
+      overflow-x: hidden;
+    }
+
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -22,7 +30,10 @@
     }
 
     @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     .typewriter::after {
@@ -35,20 +46,12 @@
       51%, 100% { opacity: 0; }
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #b05eff;
-      background: #000;
-      overflow-x: hidden;
-    }
-
     .grid-background {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background-image:
+      background-image: 
         linear-gradient(#1f1f1f 1px, transparent 1px),
         linear-gradient(90deg, #1f1f1f 1px, transparent 1px);
       background-size: 40px 40px;
@@ -132,34 +135,24 @@
       text-shadow: 0 0 8px #b05eff, 0 0 12px #a060ff;
     }
 
-    .write-button {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .write-button a {
-      display: inline-block;
-      background-color: #b05eff;
-      color: black;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 1.1em;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px #b05eff;
-    }
-
-    .write-button a:hover {
-      box-shadow: 0 0 25px #d89bff;
-    }
-
     footer {
       margin-top: 50px;
       text-align: center;
       font-size: 0.9em;
       color: #555;
       padding: 20px;
+    }
+
+    /* 👇 Добавлено: анимация появления блоков */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -179,15 +172,9 @@
   <section>
     <h2>📱 Соцсети</h2>
     <div class="social-links">
-      <a href="https://t.me/BASTAU_TGK" target="_blank">
-        <i class="fab fa-telegram"></i> Telegram-канал
-      </a>
-      <a href="https://youtube.com/@sunway-12" target="_blank">
-        <i class="fab fa-youtube"></i> YouTube
-      </a>
-      <a href="https://www.tiktok.com/@editor_psihiatr" target="_blank">
-        <i class="fab fa-tiktok"></i> TikTok
-      </a>
+      <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram-канал</a>
+      <a href="https://youtube.com/@sunway-12" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="https://www.tiktok.com/@editor_psihiatr" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
     </div>
   </section>
 
@@ -200,10 +187,6 @@
     <h2>🎮 Жизнь люркера</h2>
     <p>Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
   </section>
-
-  <div class="write-button">
-    <a href="https://t.me/H1D33N" target="_blank">✉️ Написать La1tou</a>
-  </div>
 
   <footer>
     <p>&copy; 2025 La1tou. Все права защищены.</p>
@@ -252,6 +235,23 @@
     }
 
     drawParticles();
+
+    // 👇 JS для появления секций
+    const sections = document.querySelectorAll("section");
+
+    function revealSections() {
+      const triggerBottom = window.innerHeight * 0.9;
+
+      sections.forEach(section => {
+        const boxTop = section.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+          section.classList.add("visible");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealSections);
+    window.addEventListener("load", revealSections);
   </script>
 </body>
 </html>

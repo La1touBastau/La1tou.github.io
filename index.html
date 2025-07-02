@@ -6,7 +6,6 @@
   <title>La1tou — Жизнь люркера</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* 🌌 Интро-экран */
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -47,7 +46,6 @@
       overflow-x: hidden;
     }
 
-    /* 🟪 Кибер-сетка */
     .grid-background {
       position: fixed;
       top: 0; left: 0;
@@ -67,7 +65,6 @@
       to   { background-position: 40px 40px; }
     }
 
-    /* 🔥 Фиолетовые огоньки */
     #particles {
       position: fixed;
       top: 0; left: 0;
@@ -138,26 +135,29 @@
       text-shadow: 0 0 8px #b05eff, 0 0 12px #a060ff;
     }
 
- 
-   <div style="text-align: center; margin-top: 30px;">
-  <a href="https://t.me/la1tou_channel" target="_blank" 
-     style="
-       display: inline-block;
-       background-color: #b05eff;
-       color: black;
-       padding: 12px 24px;
-       border-radius: 30px;
-       font-size: 1.1em;
-       text-decoration: none;
-       font-weight: bold;
-       transition: 0.3s ease;
-       box-shadow: 0 0 15px #b05eff;
-     "
-     onmouseenter="this.style.boxShadow='0 0 25px #d89bff'"
-     onmouseleave="this.style.boxShadow='0 0 15px #b05eff'">
-    ✉️ Написать La1tou
-  </a>
-</div> footer {
+    .write-button {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .write-button a {
+      display: inline-block;
+      background-color: #b05eff;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px #b05eff;
+    }
+
+    .write-button a:hover {
+      box-shadow: 0 0 25px #d89bff;
+    }
+
+    footer {
       margin-top: 50px;
       text-align: center;
       font-size: 0.9em;
@@ -167,12 +167,10 @@
   </style>
 </head>
 <body>
-  <!-- 🌌 Интро -->
   <div id="intro">
     <div class="typewriter">La1tou вошёл в лобби...</div>
   </div>
 
-  <!-- 🕸 Сетка и 🔥 огоньки -->
   <div class="grid-background"></div>
   <canvas id="particles"></canvas>
 
@@ -206,11 +204,15 @@
     <p>Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
   </section>
 
+  <!-- ✉️ Кнопка "Написать La1tou" -->
+  <div class="write-button">
+    <a href="https://t.me/H1D33N" target="_blank">✉️ Написать La1tou</a>
+  </div>
+
   <footer>
     <p>&copy; 2025 La1tou. Все права защищены.</p>
   </footer>
 
-  <!-- 🔊 Звук -->
   <audio id="hoverSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_63fd01d199.mp3?filename=interface-click-124467.mp3" preload="auto"></audio>
 
   <script>
@@ -220,7 +222,6 @@
       sound.play();
     }
 
-    // 🔥 Огоньки
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -256,7 +257,6 @@
         p.x += p.dx;
         p.y += p.dy;
 
-        // Перемещаем частицы обратно, если вышли за границу
         if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
       }

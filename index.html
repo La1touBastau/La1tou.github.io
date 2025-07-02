@@ -13,7 +13,6 @@
       background: #000;
       overflow-x: hidden;
     }
-
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -28,24 +27,20 @@
       z-index: 9999;
       animation: fadeOut 1s ease 3s forwards;
     }
-
     @keyframes fadeOut {
       to {
         opacity: 0;
         visibility: hidden;
       }
     }
-
     .typewriter::after {
       content: '|';
       animation: blink 0.8s infinite;
     }
-
     @keyframes blink {
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
     }
-
     .grid-background {
       position: fixed;
       top: 0; left: 0;
@@ -59,12 +54,10 @@
       animation: moveGrid 20s linear infinite;
       opacity: 0.2;
     }
-
     @keyframes moveGrid {
       from { background-position: 0 0; }
       to   { background-position: 40px 40px; }
     }
-
     #particles {
       position: fixed;
       top: 0; left: 0;
@@ -73,43 +66,35 @@
       z-index: -1;
       pointer-events: none;
     }
-
     header {
       text-align: center;
       padding: 40px 20px 10px;
     }
-
     h1 {
       font-size: 2.5em;
       margin-bottom: 10px;
     }
-
     h2 {
       color: #d89bff;
       margin-top: 40px;
       font-size: 1.5em;
     }
-
     p {
       font-size: 1.1em;
       line-height: 1.6;
       padding: 0 20px;
     }
-
     a {
       color: #d89bff;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
     a:hover {
       color: #ffffff;
     }
-
     .social-links {
       padding: 0 20px;
     }
-
     .social-links a {
       display: flex;
       align-items: center;
@@ -117,24 +102,39 @@
       font-size: 1.2em;
       transition: transform 0.3s ease;
     }
-
     .social-links a:hover {
       transform: translateX(5px);
     }
-
     .social-links i {
       margin-right: 12px;
       color: #d89bff;
       font-size: 1.6em;
       transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
     }
-
     .social-links a:hover i {
       transform: scale(1.3);
       color: #ffffff;
       text-shadow: 0 0 8px #b05eff, 0 0 12px #a060ff;
     }
-
+    .write-button {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .write-button a {
+      display: inline-block;
+      background-color: #b05eff;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px #b05eff;
+    }
+    .write-button a:hover {
+      box-shadow: 0 0 25px #d89bff;
+    }
     footer {
       margin-top: 50px;
       text-align: center;
@@ -143,14 +143,13 @@
       padding: 20px;
     }
 
-    /* 👇 Добавлено: анимация появления блоков */
-    section {
+    /* Анимация появления */
+    .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(60px);
+      transition: all 0.8s ease;
     }
-
-    section.visible {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -164,12 +163,12 @@
   <div class="grid-background"></div>
   <canvas id="particles"></canvas>
 
-  <header>
+  <header class="reveal">
     <h1>La1tou</h1>
     <p>Люркер Bastau Esports | 5+ лет в Standoff 2</p>
   </header>
 
-  <section>
+  <section class="reveal">
     <h2>📱 Соцсети</h2>
     <div class="social-links">
       <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram-канал</a>
@@ -178,17 +177,21 @@
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>🎨 Арты</h2>
     <p>Здесь будут мои арты: сеты, графика и творческие идеи.</p>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>🎮 Жизнь люркера</h2>
     <p>Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
   </section>
 
-  <footer>
+  <div class="write-button reveal">
+    <a href="https://t.me/H1D33N" target="_blank">✉️ Написать La1tou</a>
+  </div>
+
+  <footer class="reveal">
     <p>&copy; 2025 La1tou. Все права защищены.</p>
   </footer>
 
@@ -236,22 +239,20 @@
 
     drawParticles();
 
-    // 👇 JS для появления секций
-    const sections = document.querySelectorAll("section");
+    // Анимация при прокрутке
+    const reveals = document.querySelectorAll(".reveal");
 
-    function revealSections() {
-      const triggerBottom = window.innerHeight * 0.9;
-
-      sections.forEach(section => {
-        const boxTop = section.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          section.classList.add("visible");
+    function revealOnScroll() {
+      for (let el of reveals) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add("visible");
         }
-      });
+      }
     }
 
-    window.addEventListener("scroll", revealSections);
-    window.addEventListener("load", revealSections);
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
   </script>
 </body>
 </html>

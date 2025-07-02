@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!DOCTYPE html><html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,267 +12,242 @@
       color: #b05eff;
       background: #000;
       overflow-x: hidden;
-    }
+    }.language-switcher {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
+}
 
-    #intro {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      color: #b05eff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8em;
-      font-family: monospace;
-      z-index: 9999;
-      animation: fadeOut 1s ease 3s forwards;
-    }
+.language-switcher button {
+  margin: 0 4px;
+  padding: 6px 12px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
+#intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  color: #b05eff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+  font-family: monospace;
+  z-index: 9999;
+  animation: fadeOut 1s ease 3s forwards;
+}
 
-    .typewriter::after {
-      content: '|';
-      animation: blink 0.8s infinite;
-    }
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
+.typewriter::after {
+  content: '|';
+  animation: blink 0.8s infinite;
+}
 
-    .grid-background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(#1f1f1f 1px, transparent 1px),
-        linear-gradient(90deg, #1f1f1f 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -2;
-      animation: moveGrid 20s linear infinite;
-      opacity: 0.2;
-    }
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
-    @keyframes moveGrid {
-      from { background-position: 0 0; }
-      to   { background-position: 40px 40px; }
-    }
+.grid-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(#1f1f1f 1px, transparent 1px),
+    linear-gradient(90deg, #1f1f1f 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -2;
+  animation: moveGrid 20s linear infinite;
+  opacity: 0.2;
+}
 
-    #particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
+@keyframes moveGrid {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 40px; }
+}
 
-    header {
-      text-align: center;
-      padding: 40px 20px 10px;
-    }
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+header, section, footer {
+  text-align: center;
+  padding: 40px 20px 10px;
+}
 
-    h2 {
-      color: #d89bff;
-      margin-top: 40px;
-      font-size: 1.5em;
-    }
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      padding: 0 20px;
-    }
+h2 {
+  color: #d89bff;
+  margin-top: 40px;
+  font-size: 1.5em;
+}
 
-    a {
-      color: #d89bff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
 
-    a:hover {
-      color: #ffffff;
-    }
+a {
+  color: #d89bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-    .social-links {
-      padding: 0 20px;
-    }
+a:hover {
+  color: #ffffff;
+}
 
-    .social-links a {
-      display: flex;
-      align-items: center;
-      margin: 12px 0;
-      font-size: 1.2em;
-      transition: transform 0.3s ease;
-    }
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto;
+  font-size: 1.2em;
+  width: fit-content;
+  transition: transform 0.3s ease;
+}
 
-    .social-links a:hover {
-      transform: translateX(5px);
-    }
+.social-links a:hover {
+  transform: translateX(5px);
+}
 
-    .social-links i {
-      margin-right: 12px;
-      color: #d89bff;
-      font-size: 1.6em;
-      transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-    }
+.social-links i {
+  margin-right: 12px;
+  color: #d89bff;
+  font-size: 1.6em;
+}
 
-    .social-links a:hover i {
-      transform: scale(1.3);
-      color: #ffffff;
-      text-shadow: 0 0 8px #b05eff, 0 0 12px #a060ff;
-    }
+.write-button a {
+  display: inline-block;
+  background-color: #b05eff;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px #b05eff;
+}
 
-    .write-button {
-      text-align: center;
-      margin-top: 30px;
-    }
+.write-button a:hover {
+  box-shadow: 0 0 25px #d89bff;
+}
 
-    .write-button a {
-      display: inline-block;
-      background-color: #b05eff;
-      color: black;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 1.1em;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px #b05eff;
-    }
+blockquote {
+  font-style: italic;
+  font-size: 1.1em;
+  margin: 20px 30px;
+  border-left: 4px solid #b05eff;
+  padding-left: 15px;
+}
 
-    .write-button a:hover {
-      box-shadow: 0 0 25px #d89bff;
-    }
+footer {
+  font-size: 0.9em;
+  color: #555;
+  padding: 20px;
+}
 
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #555;
-      padding: 20px;
-    }
-
-    .lang-switcher {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 10000;
-    }
-
-    .lang-switcher button {
-      background: #1c1c1c;
-      color: #d89bff;
-      border: 1px solid #b05eff;
-      border-radius: 8px;
-      padding: 6px 12px;
-      margin-left: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .lang-switcher button:hover {
-      background: #b05eff;
-      color: black;
-    }
-
-    [data-lang] { display: none; }
-    .lang-ru [data-lang="ru"],
-    .lang-en [data-lang="en"] {
-      display: block;
-    }
   </style>
 </head>
-<body class="lang-ru">
-  <div class="lang-switcher">
-    <button onclick="setLang('ru')">RU</button>
-    <button onclick="setLang('en')">EN</button>
-  </div>
-
-  <div id="intro">
-    <div class="typewriter" data-lang="ru">La1tou вошёл в лобби...</div>
-    <div class="typewriter" data-lang="en">La1tou has entered the lobby...</div>
-  </div>
-
-  <div class="grid-background"></div>
-  <canvas id="particles"></canvas>
-
-  <header data-aos="fade-down">
+<body>
+  <div class="language-switcher">
+    <button onclick="setLanguage('ru')">RU</button>
+    <button onclick="setLanguage('en')">EN</button>
+    <button onclick="setLanguage('kz')">KZ</button>
+  </div>  <div id="intro">
+    <div class="typewriter">La1tou вошёл в лобби...</div>
+  </div>  <div class="grid-background"></div>
+  <canvas id="particles"></canvas>  <header data-aos="fade-down">
     <h1>La1tou</h1>
-    <p data-lang="ru">Люркер Bastau Esports | 5+ лет в Standoff 2</p>
-    <p data-lang="en">Lurker of Bastau Esports | 5+ years in Standoff 2</p>
-  </header>
-
-  <section data-aos="fade-up">
-    <h2 data-lang="ru">📱 Соцсети</h2>
-    <h2 data-lang="en">📱 Socials</h2>
+    <p data-i18n="intro">Люркер Bastau Esports | 5+ лет в Standoff 2</p>
+  </header>  <section data-aos="fade-up">
+    <h2 data-i18n="social">📱 Соцсети</h2>
     <div class="social-links">
       <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
       <a href="https://youtube.com/@sunway-12" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
       <a href="https://www.tiktok.com/@editor_psihiatr" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
     </div>
-  </section>
-
-  <section data-aos="fade-up" data-aos-delay="200">
-    <h2 data-lang="ru">🎨 Арты</h2>
-    <h2 data-lang="en">🎨 Artworks</h2>
-    <p data-lang="ru">Здесь будут мои арты: сеты, графика и творческие идеи.</p>
-    <p data-lang="en">My artworks: sets, designs, and creative ideas.</p>
-  </section>
-
-  <section data-aos="fade-up" data-aos-delay="400">
-    <h2 data-lang="ru">🎮 Жизнь люркера</h2>
-    <h2 data-lang="en">🎮 Life of a Lurker</h2>
-    <p data-lang="ru">Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
-    <p data-lang="en">I share stories about positioning, flanks, fakes, and highlights from the SO2 scene.</p>
-  </section>
-
-  <div class="write-button" data-aos="zoom-in" data-aos-delay="600">
-    <a href="https://t.me/H1D33N" target="_blank">
-      ✉️ <span data-lang="ru">Написать La1tou</span>
-      <span data-lang="en">Message La1tou</span>
-    </a>
-  </div>
-
-  <section data-aos="fade-up" data-aos-delay="800">
-    <h2 data-lang="ru">🗣️ Отзывы тиммейтов</h2>
-    <h2 data-lang="en">🗣️ Teammate Quotes</h2>
-    <blockquote style="font-style: italic; font-size: 1.1em; margin: 20px 30px; border-left: 4px solid #b05eff; padding-left: 15px;">
-      <span data-lang="ru">“Да он ебанутый... <strong>#La1touНаучиТакПикать</strong>”</span>
-      <span data-lang="en">“Dude’s insane... <strong>#La1touTeachMeThatPeek</strong>”</span><br>
+  </section>  <section data-aos="fade-up" data-aos-delay="200">
+    <h2 data-i18n="art">🎨 Арты</h2>
+    <p data-i18n="art_text">Здесь будут мои арты: сеты, графика и творческие идеи.</p>
+  </section>  <section data-aos="fade-up" data-aos-delay="400">
+    <h2 data-i18n="life">🎮 Жизнь люркера</h2>
+    <p data-i18n="life_text">Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
+  </section>  <div class="write-button" data-aos="zoom-in" data-aos-delay="600">
+    <a href="https://t.me/H1D33N" target="_blank" data-i18n="write">✉️ Написать La1tou</a>
+  </div>  <section data-aos="fade-up" data-aos-delay="800">
+    <h2 data-i18n="reviews">🗣️ Отзывы тиммейтов</h2>
+    <blockquote>
+      “Да он ебанутый... <strong>#La1touНаучиТакПикать</strong>”<br>
       <span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— IcyMu</span>
     </blockquote>
-  </section>
-
-  <footer data-aos="fade" data-aos-delay="900">
-    <p data-lang="ru">&copy; 2025 La1tou. Все права защищены.</p>
-    <p data-lang="en">&copy; 2025 La1tou. All rights reserved.</p>
-  </footer>
-
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
+  </section>  <footer data-aos="fade" data-aos-delay="900">
+    <p>&copy; 2025 La1tou. Все права защищены.</p>
+  </footer>  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>  <script>
     AOS.init();
 
-    function setLang(lang) {
-      document.body.className = 'lang-' + lang;
-      localStorage.setItem('site-lang', lang);
+    const langData = {
+      ru: {
+        intro: "Люркер Bastau Esports | 5+ лет в Standoff 2",
+        social: "📱 Соцсети",
+        art: "🎨 Арты",
+        art_text: "Здесь будут мои арты: сеты, графика и творческие идеи.",
+        life: "🎮 Жизнь люркера",
+        life_text: "Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.",
+        write: "✉️ Написать La1tou",
+        reviews: "🗣️ Отзывы тиммейтов"
+      },
+      en: {
+        intro: "Lurker of Bastau Esports | 5+ years in Standoff 2",
+        social: "📱 Social Media",
+        art: "🎨 Artworks",
+        art_text: "Here will be my sets, graphics, and creative ideas.",
+        life: "🎮 Lurker's Life",
+        life_text: "I talk about positioning, flanks, fakes and SO2 highlights.",
+        write: "✉️ Message La1tou",
+        reviews: "🗣️ Teammate Reviews"
+      },
+      kz: {
+        intro: "Bastau Esports люркері | Standoff 2-де 5+ жыл",
+        social: "📱 Әлеуметтік желілер",
+        art: "🎨 Арттар",
+        art_text: "Мұнда менің сэттерім, графикам және шығармашылық идеяларым болады.",
+        life: "🎮 Люркер өмірі",
+        life_text: "Мен позиция, фланг, фейк және SO2 хайлайттары туралы айтамын.",
+        write: "✉️ La1tou-ға жазу",
+        reviews: "🗣️ Тиммейттер пікірлері"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (langData[lang][key]) el.textContent = langData[lang][key];
+      });
     }
 
-    // Автоматическое определение языка
-    const saved = localStorage.getItem('site-lang');
-    const browserLang = navigator.language.startsWith('en') ? 'en' : 'ru';
-    setLang(saved || browserLang);
-
-    // Частицы
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -316,6 +290,5 @@
     }
 
     drawParticles();
-  </script>
-</body>
+  </script></body>
 </html>

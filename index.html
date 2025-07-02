@@ -47,6 +47,7 @@
       overflow-x: hidden;
     }
 
+    /* 🟪 Кибер-сетка */
     .grid-background {
       position: fixed;
       top: 0; left: 0;
@@ -56,7 +57,7 @@
         linear-gradient(#1f1f1f 1px, transparent 1px),
         linear-gradient(90deg, #1f1f1f 1px, transparent 1px);
       background-size: 40px 40px;
-      z-index: -1;
+      z-index: -2;
       animation: moveGrid 20s linear infinite;
       opacity: 0.2;
     }
@@ -64,6 +65,16 @@
     @keyframes moveGrid {
       from { background-position: 0 0; }
       to   { background-position: 40px 40px; }
+    }
+
+    /* 🔥 Фиолетовые огоньки */
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
     }
 
     header {
@@ -137,13 +148,14 @@
   </style>
 </head>
 <body>
-  <!-- 🔥 Интро -->
+  <!-- 🌌 Интро -->
   <div id="intro">
     <div class="typewriter">La1tou вошёл в лобби...</div>
   </div>
 
-  <!-- 🕸 Фон -->
+  <!-- 🕸 Сетка и 🔥 огоньки -->
   <div class="grid-background"></div>
+  <canvas id="particles"></canvas>
 
   <header>
     <h1>La1tou</h1>
@@ -188,6 +200,51 @@
       sound.currentTime = 0;
       sound.play();
     }
+
+    // 🔥 Огоньки
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(176, 94, 255, 0.6)";
+        ctx.shadowColor = "#b05eff";
+        ctx.shadowBlur = 10;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        // Перемещаем частицы обратно, если вышли за границу
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      }
+      requestAnimationFrame(drawParticles);
+    }
+
+    drawParticles();
   </script>
 </body>
 </html>

@@ -217,15 +217,10 @@
 
   <section data-aos="fade-up" data-aos-delay="800">
     <h2 data-i18n="reviews">🗣️ Отзывы тиммейтов</h2>
-    <blockquote>“Да он ебанутый... <strong>#La1touНаучиТакПикать</strong>”<br><span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— IcyMu</span></blockquote>
+    <blockquote id="quoteBlock"></blockquote>
   </section>
 
-  <section data-aos="fade-up" data-aos-delay="1000">
-    <h2 data-i18n="la1tou_quotes">📣 Цитаты от La1tou</h2>
-    <blockquote data-i18n="la1tou_quote">Пикай так, как сказал сам La1tou</blockquote>
-  </section>
-
-  <footer data-aos="fade" data-aos-delay="1100">
+  <footer data-aos="fade" data-aos-delay="900">
     <p>&copy; 2025 La1tou. Все права защищены.</p>
   </footer>
 
@@ -242,9 +237,7 @@
         life: "🎮 Жизнь люркера",
         life_text: "Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.",
         write: "✉️ Написать La1tou",
-        reviews: "🗣️ Отзывы тиммейтов",
-        la1tou_quotes: "📣 Цитаты от La1tou",
-        la1tou_quote: "Пикай так, как сказал сам La1tou"
+        reviews: "🗣️ Отзывы тиммейтов"
       },
       en: {
         intro: "Lurker of Bastau Esports | 5+ years in Standoff 2",
@@ -254,9 +247,7 @@
         life: "🎮 Lurker's Life",
         life_text: "I talk about positioning, flanks, fakes and SO2 highlights.",
         write: "✉️ Message La1tou",
-        reviews: "🗣️ Teammate Reviews",
-        la1tou_quotes: "📣 Quotes from La1tou",
-        la1tou_quote: "Peek like La1tou himself told you to"
+        reviews: "🗣️ Teammate Reviews"
       },
       kz: {
         intro: "Bastau Esports люркері | Standoff 2-де 5+ жыл",
@@ -266,9 +257,7 @@
         life: "🎮 Люркер өмірі",
         life_text: "Мен позиция, фланг, фейк және SO2 хайлайттары туралы айтамын.",
         write: "✉️ La1tou-ға жазу",
-        reviews: "🗣️ Тиммейттер пікірлері",
-        la1tou_quotes: "📣 La1tou сөздері",
-        la1tou_quote: "La1tou өзі айтқандай пик жасашы"
+        reviews: "🗣️ Тиммейттер пікірлері"
       }
     };
 
@@ -278,6 +267,20 @@
         if (langData[lang][key]) el.textContent = langData[lang][key];
       });
     }
+
+    const quotes = [
+      { name: "SAiD", quote: "La1tou снова затащил клатч... обычный день." },
+      { name: "IcyMu", quote: "Да он ебанутый... #La1touНаучиТакПикать" },
+      { name: "KaL1m", quote: "На фланге снова один? Это точно La1tou." },
+      { name: "2tapp", quote: "Брат, ты живёшь в смоках. Твоя родная стихия." }
+    ];
+
+    function getRandomQuote() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      return `“${random.quote}”<br><span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— ${random.name}</span>`;
+    }
+
+    document.getElementById("quoteBlock").innerHTML = getRandomQuote();
 
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");

@@ -171,6 +171,30 @@
       color: #555;
       padding: 20px;
     }
+
+    /* 📸 Арт-галерея */
+    .art-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+
+    .art-gallery img {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(176, 94, 255, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .art-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(216, 155, 255, 0.8);
+    }
   </style>
 </head>
 <body>
@@ -203,10 +227,10 @@
 
   <section data-aos="fade-up" data-aos-delay="200">
     <h2 data-i18n="art">🎨 Арты</h2>
-    <p data-i18n="art_text">Здесь будут мои арты: сеты, графика и творческие идеи </p>
- <div class="art-gallery">
-   <img src="images/art1.jpg" alt="Арт от La1tou">
- </div>
+    <p data-i18n="art_text">Здесь будут мои арты: сеты, графика и творческие идеи.</p>
+    <div class="art-gallery">
+      <img src="images/art1.jpg" alt="Арт от La1tou">
+    </div>
   </section>
 
   <section data-aos="fade-up" data-aos-delay="400">

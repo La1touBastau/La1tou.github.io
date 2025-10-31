@@ -98,7 +98,6 @@
     h1 {
       font-size: 2.5em;
       margin-bottom: 10px;
-      cursor: pointer; /* Добавлено для кликов */
     }
 
     h2 {
@@ -212,7 +211,7 @@
   <canvas id="particles"></canvas>
 
   <header data-aos="fade-down">
-    <h1 id="logoTitle">La1tou</h1>
+    <h1>La1tou</h1>
     <p data-i18n="intro">Люркер Bastau Esports | 5+ лет в Standoff 2</p>
   </header>
 
@@ -250,6 +249,9 @@
   <footer data-aos="fade" data-aos-delay="900">
     <p>&copy; 2025 La1tou. Все права защищены.</p>
   </footer>
+
+  <!-- 🎯 Пасхалка -->
+  <button id="easterBtn">Нажми, если не ссыкло 😈</button>
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -352,41 +354,64 @@
 
     drawParticles();
 
-    /* --- Easter Egg --- */
-    const logo = document.getElementById("logoTitle");
-    let logoClickCount = 0;
+    // 💜 Пасхалка JS
+    const easterBtn = document.getElementById("easterBtn");
+    let clickCount = 0;
 
-    logo.addEventListener("click", () => {
-      logoClickCount++;
-      if (logoClickCount === 5) {
-        showEasterEgg("You found the secret, nice clicker 😏");
-        logoClickCount = 0;
+    easterBtn.style.position = "fixed";
+    easterBtn.style.bottom = "25px";
+    easterBtn.style.left = "50%";
+    easterBtn.style.transform = "translateX(-50%)";
+    easterBtn.style.background = "rgba(176,94,255,0.15)";
+    easterBtn.style.border = "1px solid rgba(176,94,255,0.5)";
+    easterBtn.style.color = "#b05eff";
+    easterBtn.style.padding = "10px 20px";
+    easterBtn.style.borderRadius = "10px";
+    easterBtn.style.fontWeight = "bold";
+    easterBtn.style.fontSize = "1.1em";
+    easterBtn.style.cursor = "pointer";
+    easterBtn.style.zIndex = "9999";
+    easterBtn.style.transition = "all 0.3s ease";
+    easterBtn.onmouseenter = () => {
+      easterBtn.style.background = "rgba(176,94,255,0.3)";
+      easterBtn.style.transform = "translateX(-50%) scale(1.05)";
+    };
+    easterBtn.onmouseleave = () => {
+      easterBtn.style.background = "rgba(176,94,255,0.15)";
+      easterBtn.style.transform = "translateX(-50%) scale(1)";
+    };
+
+    easterBtn.addEventListener("click", () => {
+      clickCount++;
+      if (clickCount === 5) {
+        showEasterEgg("Ты реально не ссыкло 😏");
+        clickCount = 0;
       }
     });
 
     function showEasterEgg(text) {
-      const message = document.createElement("div");
-      message.textContent = text;
-      message.style.position = "fixed";
-      message.style.bottom = "30px";
-      message.style.right = "30px";
-      message.style.background = "rgba(176, 94, 255, 0.15)";
-      message.style.border = "1px solid rgba(176, 94, 255, 0.4)";
-      message.style.padding = "10px 15px";
-      message.style.borderRadius = "10px";
-      message.style.color = "#fff";
-      message.style.fontSize = "1em";
-      message.style.backdropFilter = "blur(6px)";
-      message.style.zIndex = "9999";
-      message.style.opacity = "0";
-      message.style.transition = "opacity 0.5s ease";
+      const msg = document.createElement("div");
+      msg.textContent = text;
+      msg.style.position = "fixed";
+      msg.style.bottom = "70px";
+      msg.style.right = "30px";
+      msg.style.background = "rgba(176,94,255,0.2)";
+      msg.style.border = "1px solid rgba(176,94,255,0.6)";
+      msg.style.padding = "12px 18px";
+      msg.style.borderRadius = "10px";
+      msg.style.color = "#fff";
+      msg.style.fontSize = "1.1em";
+      msg.style.boxShadow = "0 0 15px #b05eff";
+      msg.style.backdropFilter = "blur(5px)";
+      msg.style.opacity = "0";
+      msg.style.transition = "opacity 0.5s ease";
+      msg.style.zIndex = "9999";
+      document.body.appendChild(msg);
 
-      document.body.appendChild(message);
-      requestAnimationFrame(() => (message.style.opacity = "1"));
-
+      requestAnimationFrame(() => (msg.style.opacity = "1"));
       setTimeout(() => {
-        message.style.opacity = "0";
-        setTimeout(() => message.remove(), 500);
+        msg.style.opacity = "0";
+        setTimeout(() => msg.remove(), 500);
       }, 3000);
     }
   </script>

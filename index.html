@@ -87,8 +87,7 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      pointer-events: auto;
-      cursor: crosshair;
+      pointer-events: none;
     }
 
     header, section, footer {
@@ -99,6 +98,7 @@
     h1 {
       font-size: 2.5em;
       margin-bottom: 10px;
+      cursor: pointer; /* Добавлено для кликов */
     }
 
     h2 {
@@ -173,7 +173,6 @@
       padding: 20px;
     }
 
-    /* 📸 Арт-галерея */
     .art-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -196,29 +195,6 @@
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(216, 155, 255, 0.8);
     }
-
-    /* ✨ Пасхалка */
-    #easter-egg {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2em;
-      color: #fff;
-      background: rgba(176, 94, 255, 0.2);
-      padding: 20px 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #b05eff;
-      text-align: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
-      z-index: 99999;
-    }
-
-    #easter-egg.show {
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
@@ -235,11 +211,8 @@
   <div class="grid-background"></div>
   <canvas id="particles"></canvas>
 
-  <!-- Пасхалка -->
-  <div id="easter-egg">💥 La1tou сделал ACE!</div>
-
   <header data-aos="fade-down">
-    <h1>La1tou</h1>
+    <h1 id="logoTitle">La1tou</h1>
     <p data-i18n="intro">Люркер Bastau Esports | 5+ лет в Standoff 2</p>
   </header>
 
@@ -339,7 +312,6 @@
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let particles = [];
-    let clickCount = 0;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -380,18 +352,43 @@
 
     drawParticles();
 
-    // 🥚 Пасхалка: клик по частицам
-    canvas.addEventListener("click", () => {
-      clickCount++;
-      if (clickCount >= 10) {
-        const egg = document.getElementById("easter-egg");
-        egg.classList.add("show");
-        setTimeout(() => {
-          egg.classList.remove("show");
-        }, 4000);
-        clickCount = 0; // сброс, чтобы можно было снова вызвать
+    /* --- Easter Egg --- */
+    const logo = document.getElementById("logoTitle");
+    let logoClickCount = 0;
+
+    logo.addEventListener("click", () => {
+      logoClickCount++;
+      if (logoClickCount === 5) {
+        showEasterEgg("You found the secret, nice clicker 😏");
+        logoClickCount = 0;
       }
     });
+
+    function showEasterEgg(text) {
+      const message = document.createElement("div");
+      message.textContent = text;
+      message.style.position = "fixed";
+      message.style.bottom = "30px";
+      message.style.right = "30px";
+      message.style.background = "rgba(176, 94, 255, 0.15)";
+      message.style.border = "1px solid rgba(176, 94, 255, 0.4)";
+      message.style.padding = "10px 15px";
+      message.style.borderRadius = "10px";
+      message.style.color = "#fff";
+      message.style.fontSize = "1em";
+      message.style.backdropFilter = "blur(6px)";
+      message.style.zIndex = "9999";
+      message.style.opacity = "0";
+      message.style.transition = "opacity 0.5s ease";
+
+      document.body.appendChild(message);
+      requestAnimationFrame(() => (message.style.opacity = "1"));
+
+      setTimeout(() => {
+        message.style.opacity = "0";
+        setTimeout(() => message.remove(), 500);
+      }, 3000);
+    }
   </script>
 </body>
 </html>

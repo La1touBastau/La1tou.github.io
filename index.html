@@ -1,383 +1,385 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La1tou — Жизнь люркера</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #b05eff;
-      background: #000;
-      overflow-x: hidden;
-    }
-
-    .language-switcher {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 10000;
-    }
-
-    .language-switcher button {
-      margin: 0 4px;
-      padding: 6px 12px;
-      background: #222;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    #intro {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      color: #b05eff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8em;
-      font-family: monospace;
-      z-index: 9999;
-      animation: fadeOut 1s ease 3s forwards;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    .typewriter::after {
-      content: '|';
-      animation: blink 0.8s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .grid-background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(#1f1f1f 1px, transparent 1px),
-        linear-gradient(90deg, #1f1f1f 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -2;
-      animation: moveGrid 20s linear infinite;
-      opacity: 0.2;
-    }
-
-    @keyframes moveGrid {
-      from { background-position: 0 0; }
-      to   { background-position: 40px 40px; }
-    }
-
-    #particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    header, section, footer {
-      text-align: center;
-      padding: 40px 20px 10px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      color: #d89bff;
-      margin-top: 40px;
-      font-size: 1.5em;
-    }
-
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    a {
-      color: #d89bff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #ffffff;
-    }
-
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 12px auto;
-      font-size: 1.2em;
-      width: fit-content;
-      transition: transform 0.3s ease;
-    }
-
-    .social-links a:hover {
-      transform: translateX(5px);
-    }
-
-    .social-links i {
-      margin-right: 12px;
-      color: #d89bff;
-      font-size: 1.6em;
-    }
-
-    .write-button a {
-      display: inline-block;
-      background-color: #b05eff;
-      color: black;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 1.1em;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px #b05eff;
-    }
-
-    .write-button a:hover {
-      box-shadow: 0 0 25px #d89bff;
-    }
-
-    blockquote {
-      font-style: italic;
-      font-size: 1.1em;
-      margin: 20px 30px;
-      border-left: 4px solid #b05eff;
-      padding-left: 15px;
-    }
-
-    footer {
-      font-size: 0.9em;
-      color: #555;
-      padding: 20px;
-    }
-
-    .art-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-      padding: 0 20px;
-    }
-
-    .art-gallery img {
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(176, 94, 255, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .art-gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(216, 155, 255, 0.8);
-    }
-  </style>
-</head>
-<body>
-  <div class="language-switcher">
-    <button onclick="setLanguage('ru')">RU</button>
-    <button onclick="setLanguage('en')">EN</button>
-    <button onclick="setLanguage('kz')">KZ</button>
-  </div>
-
-  <div id="intro">
-    <div class="typewriter">La1tou вошёл в лобби...</div>
-  </div>
-
-  <div class="grid-background"></div>
-  <canvas id="particles"></canvas>
-
-  <header data-aos="fade-down">
-    <h1>La1tou</h1>
-    <p data-i18n="intro">Люркер Bastau Esports | 5+ лет в Standoff 2</p>
-  </header>
-
-  <section data-aos="fade-up">
-    <h2 data-i18n="social">📱 Соцсети</h2>
-    <div class="social-links">
-      <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-      <a href="https://youtube.com/@sunway-12" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-      <a href="https://www.tiktok.com/@editor_psihiatr" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-    </div>
-  </section>
-
-  <section data-aos="fade-up" data-aos-delay="200">
-    <h2 data-i18n="art">🎨 Арты</h2>
-    <p data-i18n="art_text">Здесь будут мои арты: сеты, графика и творческие идеи.</p>
-    <div class="art-gallery">
-      <img src="images/art1.jpg" alt="Арт от La1tou">
-    </div>
-  </section>
-
-  <section data-aos="fade-up" data-aos-delay="400">
-    <h2 data-i18n="life">🎮 Жизнь люркера</h2>
-    <p data-i18n="life_text">Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>
-  </section>
-
-  <div class="write-button" data-aos="zoom-in" data-aos-delay="600">
-    <a href="https://t.me/Deth_match?start=hi" target="_blank" data-i18n="write">✉️ Написать La1tou</a>
-  </div>
-
-  <section data-aos="fade-up" data-aos-delay="800">
-    <h2 data-i18n="reviews">🗣️ Отзывы тиммейтов</h2>
-    <blockquote id="quoteBlock"></blockquote>
-  </section>
-
-  <footer data-aos="fade" data-aos-delay="900">
-    <p>&copy; 2025 La1tou. Все права защищены.</p>
-  </footer>
+<!DOCTYPE html>    
+<html lang="ru">    
+<head>    
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+  <title>La1tou — Жизнь люркера</title>    
+  <link rel="icon" type="image/png" href="favicon.png">    
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />    
+  <style>    
+    body {    
+      margin: 0;    
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+      color: #b05eff;    
+      background: #000;    
+      overflow-x: hidden;    
+    }    
+    
+    .language-switcher {    
+      position: fixed;    
+      top: 10px;    
+      right: 10px;    
+      z-index: 10000;    
+    }    
+    
+    .language-switcher button {    
+      margin: 0 4px;    
+      padding: 6px 12px;    
+      background: #222;    
+      color: #fff;    
+      border: none;    
+      border-radius: 4px;    
+      cursor: pointer;    
+      font-weight: bold;    
+    }    
+    
+    #intro {    
+      position: fixed;    
+      top: 0; left: 0;    
+      width: 100%; height: 100%;    
+      background: #000;    
+      color: #b05eff;    
+      display: flex;    
+      justify-content: center;    
+      align-items: center;    
+      font-size: 1.8em;    
+      font-family: monospace;    
+      z-index: 9999;    
+      animation: fadeOut 1s ease 3s forwards;    
+    }    
+    
+    @keyframes fadeOut {    
+      to { opacity: 0; visibility: hidden; }    
+    }    
+    
+    .typewriter::after {    
+      content: '|';    
+      animation: blink 0.8s infinite;    
+    }    
+    
+    @keyframes blink {    
+      0%, 50% { opacity: 1; }    
+      51%, 100% { opacity: 0; }    
+    }    
+    
+    .grid-background {    
+      position: fixed;    
+      top: 0; left: 0;    
+      width: 100%;    
+      height: 100%;    
+      background-image:     
+        linear-gradient(#1f1f1f 1px, transparent 1px),    
+        linear-gradient(90deg, #1f1f1f 1px, transparent 1px);    
+      background-size: 40px 40px;    
+      z-index: -2;    
+      animation: moveGrid 20s linear infinite;    
+      opacity: 0.2;    
+    }    
+    
+    @keyframes moveGrid {    
+      from { background-position: 0 0; }    
+      to   { background-position: 40px 40px; }    
+    }    
+    
+    #particles {    
+      position: fixed;    
+      top: 0; left: 0;    
+      width: 100vw;    
+      height: 100vh;    
+      z-index: -1;    
+      pointer-events: none;    
+    }    
+    
+    header, section, footer {    
+      text-align: center;    
+      padding: 40px 20px 10px;    
+    }    
+    
+    h1 {    
+      font-size: 2.5em;    
+      margin-bottom: 10px;    
+    }    
+    
+    h2 {    
+      color: #d89bff;    
+      margin-top: 40px;    
+      font-size: 1.5em;    
+    }    
+    
+    p {    
+      font-size: 1.1em;    
+      line-height: 1.6;    
+    }    
+    
+    a {    
+      color: #d89bff;    
+      text-decoration: none;    
+      transition: color 0.3s ease;    
+    }    
+    
+    a:hover {    
+      color: #ffffff;    
+    }    
+    
+    .social-links a {    
+      display: flex;    
+      align-items: center;    
+      justify-content: center;    
+      margin: 12px auto;    
+      font-size: 1.2em;    
+      width: fit-content;    
+      transition: transform 0.3s ease;    
+    }    
+    
+    .social-links a:hover {    
+      transform: translateX(5px);    
+    }    
+    
+    .social-links i {    
+      margin-right: 12px;    
+      color: #d89bff;    
+      font-size: 1.6em;    
+    }    
+    
+    .write-button a {    
+      display: inline-block;    
+      background-color: #b05eff;    
+      color: black;    
+      padding: 12px 24px;    
+      border-radius: 30px;    
+      font-size: 1.1em;    
+      text-decoration: none;    
+      font-weight: bold;    
+      transition: 0.3s ease;    
+      box-shadow: 0 0 15px #b05eff;    
+    }    
+    
+    .write-button a:hover {    
+      box-shadow: 0 0 25px #d89bff;    
+    }    
+    
+    blockquote {    
+      font-style: italic;    
+      font-size: 1.1em;    
+      margin: 20px 30px;    
+      border-left: 4px solid #b05eff;    
+      padding-left: 15px;    
+    }    
+    
+    footer {    
+      font-size: 0.9em;    
+      color: #555;    
+      padding: 20px;    
+    }    
+    
+    .art-gallery {    
+      display: grid;    
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));    
+      gap: 16px;    
+      margin-top: 20px;    
+      padding: 0 20px;    
+    }    
+    
+    .art-gallery img {    
+      width: 100%;    
+      max-width: 200px;    
+      margin: 0 auto;    
+      display: block;    
+      border-radius: 12px;    
+      box-shadow: 0 0 12px rgba(176, 94, 255, 0.4);    
+      transition: transform 0.3s ease, box-shadow 0.3s ease;    
+    }    
+    
+    .art-gallery img:hover {    
+      transform: scale(1.05);    
+      box-shadow: 0 0 20px rgba(216, 155, 255, 0.8);    
+    }    
+  </style>    
+</head>    
+<body>    
+  <div class="language-switcher">    
+    <button onclick="setLanguage('ru')">RU</button>    
+    <button onclick="setLanguage('en')">EN</button>    
+    <button onclick="setLanguage('kz')">KZ</button>    
+  </div>    
+    
+  <div id="intro">    
+    <div class="typewriter">La1tou вошёл в лобби...</div>    
+  </div>    
+    
+  <div class="grid-background"></div>    
+  <canvas id="particles"></canvas>    
+    
+  <header data-aos="fade-down">    
+    <h1>La1tou</h1>    
+    <p data-i18n="intro">Люркер Bastau Esports | 5+ лет в Standoff 2</p>    
+  </header>    
+    
+  <section data-aos="fade-up">    
+    <h2 data-i18n="social">📱 Соцсети</h2>    
+    <div class="social-links">    
+      <a href="https://t.me/BASTAU_TGK" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>    
+      <a href="https://youtube.com/@sunway-12" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>    
+      <a href="https://www.tiktok.com/@editor_psihiatr" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>    
+    </div>    
+  </section>    
+    
+  <section data-aos="fade-up" data-aos-delay="200">    
+    <h2 data-i18n="art">🎨 Арты</h2>    
+    <p data-i18n="art_text">Здесь будут мои арты: сеты, графика и творческие идеи.</p>    
+    <div class="art-gallery">    
+      <img src="images/art1.jpg" alt="Арт от La1tou">    
+    </div>    
+  </section>    
+    
+  <section data-aos="fade-up" data-aos-delay="400">    
+    <h2 data-i18n="life">🎮 Жизнь люркера</h2>    
+    <p data-i18n="life_text">Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.</p>    
+  </section>    
+    
+  <div class="write-button" data-aos="zoom-in" data-aos-delay="600">    
+    <a href="https://t.me/Deth_match?start=hi" target="_blank" data-i18n="write">✉️ Написать La1tou</a>    
+  </div>    
+    
+  <section data-aos="fade-up" data-aos-delay="800">    
+    <h2 data-i18n="reviews">🗣️ Отзывы тиммейтов</h2>    
+    <blockquote id="quoteBlock"></blockquote>    
+  </section>    
+    
+  <footer data-aos="fade" data-aos-delay="900">    
+    <p>&copy; 2025 La1tou. Все права защищены.</p>    
+  </footer>    
 
   <!-- 🎯 Пасхалка -->
   <button id="easterBtn">Нажми, если не ссыкло 😈</button>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>    
+  <script>    
+    AOS.init();    
 
-    const langData = {
-      ru: {
-        intro: "Люркер Bastau Esports | 5+ лет в Standoff 2",
-        social: "📱 Соцсети",
-        art: "🎨 Арты",
-        art_text: "Здесь будут мои арты: сеты, графика и творческие идеи.",
-        life: "🎮 Жизнь люркера",
-        life_text: "Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.",
-        write: "✉️ Написать La1tou",
-        reviews: "🗣️ Отзывы тиммейтов"
-      },
-      en: {
-        intro: "Lurker of Bastau Esports | 5+ years in Standoff 2",
-        social: "📱 Social Media",
-        art: "🎨 Artworks",
-        art_text: "Here will be my sets, graphics, and creative ideas.",
-        life: "🎮 Lurker's Life",
-        life_text: "I talk about positioning, flanks, fakes and SO2 highlights.",
-        write: "✉️ Message La1tou",
-        reviews: "🗣️ Teammate Reviews"
-      },
-      kz: {
-        intro: "Bastau Esports люркері | Standoff 2-де 5+ жыл",
-        social: "📱 Әлеуметтік желілер",
-        art: "🎨 Арттар",
-        art_text: "Мұнда менің сэттерім, графикам және шығармашылық идеяларым болады.",
-        life: "🎮 Люркер өмірі",
-        life_text: "Мен позиция, фланг, фейк және SO2 хайлайттары туралы айтамын.",
-        write: "✉️ La1tou-ға жазу",
-        reviews: "🗣️ Тиммейттер пікірлері"
-      }
-    };
+    const langData = {    
+      ru: {    
+        intro: "Люркер Bastau Esports | 5+ лет в Standoff 2",    
+        social: "📱 Соцсети",    
+        art: "🎨 Арты",    
+        art_text: "Здесь будут мои арты: сеты, графика и творческие идеи.",    
+        life: "🎮 Жизнь люркера",    
+        life_text: "Я рассказываю про позиционку, фланги, фейки и хайлайты из мира SO2.",    
+        write: "✉️ Написать La1tou",    
+        reviews: "🗣️ Отзывы тиммейтов"    
+      },    
+      en: {    
+        intro: "Lurker of Bastau Esports | 5+ years in Standoff 2",    
+        social: "📱 Social Media",    
+        art: "🎨 Artworks",    
+        art_text: "Here will be my sets, graphics, and creative ideas.",    
+        life: "🎮 Lurker's Life",    
+        life_text: "I talk about positioning, flanks, fakes and SO2 highlights.",    
+        write: "✉️ Message La1tou",    
+        reviews: "🗣️ Teammate Reviews"    
+      },    
+      kz: {    
+        intro: "Bastau Esports люркері | Standoff 2-де 5+ жыл",    
+        social: "📱 Әлеуметтік желілер",    
+        art: "🎨 Арттар",    
+        art_text: "Мұнда менің сэттерім, графикам және шығармашылық идеяларым болады.",    
+        life: "🎮 Люркер өмірі",    
+        life_text: "Мен позиция, фланг, фейк және SO2 хайлайттары туралы айтамын.",    
+        write: "✉️ La1tou-ға жазу",    
+        reviews: "🗣️ Тиммейттер пікірлері"    
+      }    
+    };    
 
-    function setLanguage(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (langData[lang][key]) el.textContent = langData[lang][key];
-      });
-    }
+    function setLanguage(lang) {    
+      document.querySelectorAll('[data-i18n]').forEach(el => {    
+        const key = el.getAttribute('data-i18n');    
+        if (langData[lang][key]) el.textContent = langData[lang][key];    
+      });    
+    }    
 
-    const quotes = [
-      { name: "SAiD", quote: "La1tou снова затащил клатч... обычный день." },
-      { name: "IcyMu", quote: "Да он ебанутый... #La1touНаучиТакПикать" },
-      { name: "KaL1m", quote: "На фланге снова один? Это точно La1tou." },
-      { name: "2tapp", quote: "Брат, ты живёшь в смоках. Твоя родная стихия." }
-    ];
+    const quotes = [    
+      { name: "SAiD", quote: "La1tou снова затащил клатч... обычный день." },    
+      { name: "IcyMu", quote: "Да он ебанутый... #La1touНаучиТакПикать" },    
+      { name: "KaL1m", quote: "На фланге снова один? Это точно La1tou." },    
+      { name: "2tapp", quote: "Брат, ты живёшь в смоках. Твоя родная стихия." }    
+    ];    
 
-    function getRandomQuote() {
-      const random = quotes[Math.floor(Math.random() * quotes.length)];
-      return `“${random.quote}”<br><span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— ${random.name}</span>`;
-    }
+    function getRandomQuote() {    
+      const random = quotes[Math.floor(Math.random() * quotes.length)];    
+      return `“${random.quote}”<br><span style="display: block; margin-top: 10px; font-weight: bold; color: #d89bff;">— ${random.name}</span>`;    
+    }    
 
-    document.getElementById("quoteBlock").innerHTML = getRandomQuote();
+    document.getElementById("quoteBlock").innerHTML = getRandomQuote();    
 
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    let particles = [];
+    const canvas = document.getElementById("particles");    
+    const ctx = canvas.getContext("2d");    
+    let particles = [];    
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    function resizeCanvas() {    
+      canvas.width = window.innerWidth;    
+      canvas.height = window.innerHeight;    
+    }    
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);    
+    resizeCanvas();    
 
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2 + 1,
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5,
-      });
-    }
+    for (let i = 0; i < 80; i++) {    
+      particles.push({    
+        x: Math.random() * canvas.width,    
+        y: Math.random() * canvas.height,    
+        r: Math.random() * 2 + 1,    
+        dx: (Math.random() - 0.5) * 0.5,    
+        dy: (Math.random() - 0.5) * 0.5,    
+      });    
+    }    
 
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(176, 94, 255, 0.6)";
-        ctx.shadowColor = "#b05eff";
-        ctx.shadowBlur = 10;
-        ctx.fill();
+    function drawParticles() {    
+      ctx.clearRect(0, 0, canvas.width, canvas.height);    
+      for (let p of particles) {    
+        ctx.beginPath();    
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);    
+        ctx.fillStyle = "rgba(176, 94, 255, 0.6)";    
+        ctx.shadowColor = "#b05eff";    
+        ctx.shadowBlur = 10;    
+        ctx.fill();    
 
-        p.x += p.dx;
-        p.y += p.dy;
+        p.x += p.dx;    
+        p.y += p.dy;    
 
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-      }
-      requestAnimationFrame(drawParticles);
-    }
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;    
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;    
+      }    
+      requestAnimationFrame(drawParticles);    
+    }    
 
-    drawParticles();
+    drawParticles();    
 
-    // 💜 Пасхалка JS
+    // 🌌 Пасхалка
     const easterBtn = document.getElementById("easterBtn");
     let clickCount = 0;
 
     easterBtn.style.position = "fixed";
-    easterBtn.style.bottom = "25px";
+    easterBtn.style.bottom = "30px";
     easterBtn.style.left = "50%";
     easterBtn.style.transform = "translateX(-50%)";
-    easterBtn.style.background = "rgba(176,94,255,0.15)";
-    easterBtn.style.border = "1px solid rgba(176,94,255,0.5)";
+    easterBtn.style.background = "rgba(176, 94, 255, 0.15)";
+    easterBtn.style.border = "1px solid rgba(176, 94, 255, 0.4)";
     easterBtn.style.color = "#b05eff";
     easterBtn.style.padding = "10px 20px";
-    easterBtn.style.borderRadius = "10px";
+    easterBtn.style.borderRadius = "8px";
+    easterBtn.style.fontSize = "1em";
     easterBtn.style.fontWeight = "bold";
-    easterBtn.style.fontSize = "1.1em";
     easterBtn.style.cursor = "pointer";
-    easterBtn.style.zIndex = "9999";
+    easterBtn.style.zIndex = "10000";
     easterBtn.style.transition = "all 0.3s ease";
+
     easterBtn.onmouseenter = () => {
-      easterBtn.style.background = "rgba(176,94,255,0.3)";
+      easterBtn.style.background = "rgba(176, 94, 255, 0.3)";
       easterBtn.style.transform = "translateX(-50%) scale(1.05)";
     };
+
     easterBtn.onmouseleave = () => {
-      easterBtn.style.background = "rgba(176,94,255,0.15)";
+      easterBtn.style.background = "rgba(176, 94, 255, 0.15)";
       easterBtn.style.transform = "translateX(-50%) scale(1)";
     };
 
@@ -393,27 +395,18 @@
       const msg = document.createElement("div");
       msg.textContent = text;
       msg.style.position = "fixed";
-      msg.style.bottom = "70px";
-      msg.style.right = "30px";
-      msg.style.background = "rgba(176,94,255,0.2)";
-      msg.style.border = "1px solid rgba(176,94,255,0.6)";
-      msg.style.padding = "12px 18px";
-      msg.style.borderRadius = "10px";
+      msg.style.top = "50%";
+      msg.style.left = "50%";
+      msg.style.transform = "translate(-50%, -50%)";
+      msg.style.padding = "14px 22px";
+      msg.style.background = "rgba(176, 94, 255, 0.25)";
+      msg.style.border = "1px solid rgba(176, 94, 255, 0.6)";
+      msg.style.borderRadius = "12px";
       msg.style.color = "#fff";
-      msg.style.fontSize = "1.1em";
-      msg.style.boxShadow = "0 0 15px #b05eff";
+      msg.style.fontSize = "1.3em";
+      msg.style.boxShadow = "0 0 25px rgba(176, 94, 255, 0.6)";
       msg.style.backdropFilter = "blur(5px)";
       msg.style.opacity = "0";
       msg.style.transition = "opacity 0.5s ease";
       msg.style.zIndex = "9999";
-      document.body.appendChild(msg);
-
-      requestAnimationFrame(() => (msg.style.opacity = "1"));
-      setTimeout(() => {
-        msg.style.opacity = "0";
-        setTimeout(() => msg.remove(), 500);
-      }, 3000);
-    }
-  </script>
-</body>
-</html>
+      document.body.appendChild
